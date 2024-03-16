@@ -57,8 +57,71 @@ void main() {
   String name = 'Rivaan R.'
   printName(name: name, age: 12, greeting: 'Hello!'); //with this syntx I can pass in any order
   printName(greeting: 'Hello!', name: name, age: 12);
+  printName(greeting: 'Hello!', name: name); //age no more required
+  printName(12, false, greeting: 'Hello!', name: name); //NAME + POSITIONAL
 }
 
-void printName({required String name, required int age, required String greeting}) {
+void printName({required String name, int? age, required String greeting}) {
   print(name);
 }
+
+// POSITIONAL AND NAME ARGUMENTS COMBINED
+void printName(int age, bool isAdult, {required String name, required String greeting}) { //you cannot put anything after the {}
+  print(name);
+}
+
+
+void main() {
+  (int, String) stuff =  printStuff(); 
+  //or
+  final (age, name) = printStuff();
+  print(age);
+  print(name);
+}
+(int, String) printStuff() {
+  return(12, 'Rivaan');
+}
+
+
+
+void main() {
+  final stuff = printStuff();
+  print(stuff.name);
+  print(stuff.age);
+}
+({int age, String name}) printStuff() {
+  return(age: 12, name: 'Rivaan');
+}
+// in this way we don't have to use .$1, .$2 etc anymore
+
+
+//let's now return a function from a function
+void main() {
+  final stuff = printStuff();
+  stuff(); //is gonna print 'Yooo'
+  //or
+  () {
+    print('Yooo');
+  }();
+}
+Function printStuff() {
+  return () {
+    print('Yooo');
+  };
+}
+
+
+//considering a function like this
+voide main() {
+  final name = printStuff();
+  print(name);
+}
+String printStuff() {
+  return 'Rivaan';
+}
+//we can rewrite the function in a shorthened way
+String printStuff() => 'Rivaan';
+
+
+
+
