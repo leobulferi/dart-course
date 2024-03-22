@@ -284,7 +284,7 @@ class Dog implements Animal {}
 class Cat extends Animal {}
 
 sealed class Animal {}
-final class Aniaml1 {}
+final class Aniaml1 {} //you cannot implement or extends outside the library
 base class Animal2 {} //can only be extended
 interface class Animal3 {} //can only be implemented
 mixin class Aniaml4 {}
