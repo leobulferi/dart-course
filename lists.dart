@@ -76,8 +76,33 @@ void main() {
     }
 
   }
+  print(filteredStudents);
 
+  //or
+  List<Student> filteredStudents = [];
+  for(final student in students) {
+    if(student.marks >= 20) {
+      filteredStudents.add(student);
+    }
+
+  }
+  print(filteredStudents);
+
+  //or
+
+  final filteredStudents = students.where((student) => student.marks >= 20);
+  print(filteredStudents.toList());
+
+
+  //ADDITIONAL METHODS WITH LISTS
+
+  students.reversed; //print the list at reverse
+
+  students.addAll([]);
 }
+
+
+
 
 class Student {
   final String name;
@@ -88,3 +113,108 @@ class Student {
   @override
   String toString() => 'Student: $name'; 
 }
+
+
+
+
+
+//SETS -> it removes all the duplicates from a lists
+void main() {
+
+  final sonalStudent = Student('Sonal', 40);
+
+  Set<Student> students = {
+    Student('Naman', 20),
+    Student('Rakesh', 30),
+    Student('Rivaan', 10),
+    sonalStudent, sonalStudent, sonalStudent //it just print out one, it removes all the same element except one
+  };
+ 
+  print(students.toSet); // for converting a list to a set
+}
+
+
+//MAP -> collection of key value pair
+/* 
+{
+  'key' : 'value',
+  'key2' : 'value2',
+}
+*/
+void main() {
+
+final list = [10, 15, 30];
+
+Map<String, int> marks = {
+  'Rivaan' : 10,
+  'Naman' : 15,
+  'Other Kid' : 30,
+};
+
+print(marks['Rivaan']?.isEven); //so that if the key doesn't exist it returns null
+}
+
+
+Map<int, String> marks = {
+  10: '10',
+  20: '15',
+  30: '30',
+};
+marks[40] = '200';
+
+marks[10] = '100';
+
+marks.addAll({
+  40: '45',
+  50: '65',
+  70: 'hello',
+});
+//or 
+final anotherMap = {
+  40: '45',
+  50: '65',
+  70: 'hello',
+};
+
+marks.addAll(anotherMap);
+
+marks.remove(10);
+
+for(int i = 0; i< marks.length, i++){
+  print(`${marks.keys.toList()[i]} : ${marks.values.toList()[i]}`); //instead of marks[i] for iterating
+}
+
+marks.forEach((key, val) {
+  print(`$key : $val`);
+});
+
+
+Map<String, List> marksUserA = {
+  'Math' : 20,
+  'English' : 20,
+  'CS' : 20,
+};
+
+List<Map<String,int>> marks = [
+  {
+  'Math' : 20,
+  'CS' : 20,
+  'English' : 15
+  },
+  {
+  'Math' : 10,
+  'CS' : 15,
+  'English' : 15
+  },
+  markUserA
+];
+
+marks.map((e) {
+  print(e);
+}).toList();
+
+marks.map((e) {
+  e.forEach((key, val) {
+    print(`$key : $val`);
+  })
+}).toList();
